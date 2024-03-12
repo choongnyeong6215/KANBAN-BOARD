@@ -1,10 +1,30 @@
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import {
+  DragDropContext,
+  Draggable,
+  DropResult,
+  Droppable,
+} from "react-beautiful-dnd";
 import { GlobalStyle } from "./styles/GlobalStyle";
 import { Board, BoardContainer, BoardGroup, Card } from "./styles/dndStyle";
-
-const onDragEnd = () => {};
+import { useRecoilState } from "recoil";
+import { toDoState } from "./recoil/atom";
 
 const App = () => {
+  const [todos, setToDos] = useRecoilState(toDoState);
+
+  const onDragEnd = ({ draggableId, source, destination }: DropResult) => {
+    const updatedToDos = [...todos];
+
+    // 영역 밖에 드롭한 경우
+    if (!destination) return;
+
+    updatedToDos.splice(source.index, 1);
+
+    updatedToDos.splice(destination.index, 0, draggableId);
+
+    setToDos(updatedToDos);
+  };
+
   return (
     <>
       <GlobalStyle />
@@ -14,39 +34,21 @@ const App = () => {
             <Droppable droppableId="drop_section">
               {(provided) => (
                 <Board ref={provided.innerRef} {...provided.droppableProps}>
-                  <Draggable draggableId="0" index={0}>
-                    {(prodivded) => (
-                      <Card
-                        ref={prodivded.innerRef}
-                        {...prodivded.dragHandleProps}
-                        {...prodivded.draggableProps}
-                      >
-                        first
-                      </Card>
-                    )}
-                  </Draggable>
-                  <Draggable draggableId="1" index={1}>
-                    {(prodivded) => (
-                      <Card
-                        ref={prodivded.innerRef}
-                        {...prodivded.dragHandleProps}
-                        {...prodivded.draggableProps}
-                      >
-                        second
-                      </Card>
-                    )}
-                  </Draggable>
-                  <Draggable draggableId="2" index={2}>
-                    {(prodivded) => (
-                      <Card
-                        ref={prodivded.innerRef}
-                        {...prodivded.dragHandleProps}
-                        {...prodivded.draggableProps}
-                      >
-                        third
-                      </Card>
-                    )}
-                  </Draggable>
+                  {todos.map((v, idx) => (
+                    <Draggable key={v} draggableId={v} index={idx}>
+                      {(provided) => (
+                        <Card
+                          ref={provided.innerRef}
+                          {...provided.dragHandleProps}
+                          {...provided.draggableProps}
+                        >
+                          {v}
+                        </Card>
+                      )}
+                    </Draggable>
+                  ))}
+                  {/* 보드 크기 고정 */}
+                  {provided.placeholder}
                 </Board>
               )}
             </Droppable>
