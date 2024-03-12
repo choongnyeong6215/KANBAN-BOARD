@@ -1,6 +1,12 @@
 import { atom } from "recoil";
+import { ITodoState } from "../interfaces/todoInterface";
 
-export const toDoState = atom({
+export const toDoState = atom<ITodoState>({
   key: "todo",
-  default: ["a", "b", "c", "d", "e", "f"],
+  // 할일, 진행중, 완료 카테고리
+  default: {
+    to_do: ["a", "b"],
+    doing: ["c", "d", "e"],
+    done: ["f"],
+  },
 });

@@ -1,14 +1,11 @@
 import { Droppable } from "react-beautiful-dnd";
 import { Board } from "../styles/dndStyle";
-import { toDoState } from "../recoil/atom";
-import { useRecoilValue } from "recoil";
 import DragSection from "./DragSection";
+import { IBoardProps } from "../interfaces/boardInterface";
 
-const DropSection = () => {
-  const todos = useRecoilValue(toDoState);
-
+const DropSection = ({ todos, boardId }: IBoardProps) => {
   return (
-    <Droppable droppableId="drop_section">
+    <Droppable droppableId={boardId}>
       {(provided) => (
         <Board ref={provided.innerRef} {...provided.droppableProps}>
           {todos.map((v, idx) => (

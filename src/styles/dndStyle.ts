@@ -4,15 +4,16 @@ export const BoardContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: 480px;
+  max-width: 700px;
   margin: 0 auto;
   height: 100vh;
 `;
 
 export const BoardGroup = styled.div`
   display: grid;
-  grid-repeat-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   width: 100%;
+  gap: 2rem;
 `;
 
 // Droppable

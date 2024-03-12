@@ -1,6 +1,7 @@
 import { Draggable } from "react-beautiful-dnd";
 import { Card } from "../styles/dndStyle";
 import { ICardProps } from "../interfaces/cardInterface";
+import React from "react";
 
 const DragSection = ({ v, idx }: ICardProps) => {
   return (
@@ -18,4 +19,5 @@ const DragSection = ({ v, idx }: ICardProps) => {
   );
 };
 
-export default DragSection;
+// 리렌더링 최적화
+export default React.memo(DragSection);
