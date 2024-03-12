@@ -1,13 +1,9 @@
-import {
-  DragDropContext,
-  Draggable,
-  DropResult,
-  Droppable,
-} from "react-beautiful-dnd";
+import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { GlobalStyle } from "./styles/GlobalStyle";
-import { Board, BoardContainer, BoardGroup, Card } from "./styles/dndStyle";
+import { BoardContainer, BoardGroup } from "./styles/dndStyle";
 import { useRecoilState } from "recoil";
 import { toDoState } from "./recoil/atom";
+import DropSection from "./components/DropSection";
 
 const App = () => {
   const [todos, setToDos] = useRecoilState(toDoState);
@@ -31,27 +27,7 @@ const App = () => {
       <DragDropContext onDragEnd={onDragEnd}>
         <BoardContainer>
           <BoardGroup>
-            <Droppable droppableId="drop_section">
-              {(provided) => (
-                <Board ref={provided.innerRef} {...provided.droppableProps}>
-                  {todos.map((v, idx) => (
-                    <Draggable key={v} draggableId={v} index={idx}>
-                      {(provided) => (
-                        <Card
-                          ref={provided.innerRef}
-                          {...provided.dragHandleProps}
-                          {...provided.draggableProps}
-                        >
-                          {v}
-                        </Card>
-                      )}
-                    </Draggable>
-                  ))}
-                  {/* 보드 크기 고정 */}
-                  {provided.placeholder}
-                </Board>
-              )}
-            </Droppable>
+            <DropSection />
           </BoardGroup>
         </BoardContainer>
       </DragDropContext>
