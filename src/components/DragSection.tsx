@@ -6,8 +6,9 @@ import React from "react";
 const DragSection = ({ v, idx }: ICardProps) => {
   return (
     <Draggable draggableId={v} index={idx}>
-      {(provided) => (
+      {(provided, snapshot) => (
         <Card
+          $isDragging={snapshot.isDragging}
           ref={provided.innerRef}
           {...provided.dragHandleProps}
           {...provided.draggableProps}
