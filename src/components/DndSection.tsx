@@ -8,12 +8,47 @@ const DndSection = () => {
   const [todos, setToDos] = useRecoilState(toDoState);
 
   const onDragEnd = ({ draggableId, source, destination }: DropResult) => {
-    // const updatedToDos = [...todos];
-    // // 영역 밖에 드롭한 경우
-    // if (!destination) return;
-    // updatedToDos.splice(source.index, 1);
-    // updatedToDos.splice(destination.index, 0, draggableId);
-    // setToDos(updatedToDos);
+    console.log(draggableId, source, destination);
+
+    // 보드 밖에 드롭한 경우
+    if (!destination) return;
+
+    // 같은 카텍고리로 이동한 경우
+    if (source.droppableId === destination?.droppableId) {
+      setToDos((prevTodos) => {
+        const updateBoard = [...prevTodos[destination.droppableId]];
+
+        updateBoard.splice(source.index, 1);
+
+        updateBoard.splice(destination.index, 0, draggableId);
+
+        // 보드 최신화
+        return {
+          ...prevTodos,
+          [destination.droppableId]: updateBoard,
+        };
+      });
+    }
+
+    // 다른 카테고리로 이동한 경우
+    if (source.droppableId !== destination?.droppableId) {
+      setToDos((prevTodos) => {
+        const originalBoard = [...prevTodos[source.droppableId]];
+
+        const updateBoard = [...prevTodos[destination.droppableId]];
+
+        originalBoard.splice(source.index, 1);
+
+        updateBoard.splice(destination.index, 0, draggableId);
+
+        // 보드 최신화
+        return {
+          ...prevTodos,
+          [source.droppableId]: originalBoard,
+          [destination.droppableId]: updateBoard,
+        };
+      });
+    }
   };
 
   return (

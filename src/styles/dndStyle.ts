@@ -31,3 +31,10 @@ export const Card = styled.div`
   margin: 1rem 0;
   border-radius: 1rem;
 `;
+
+export const BoardTitle = styled.p`
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.25rem;
+  padding-bottom: 1rem;
+`;

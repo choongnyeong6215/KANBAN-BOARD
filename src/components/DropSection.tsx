@@ -1,5 +1,5 @@
 import { Droppable } from "react-beautiful-dnd";
-import { Board } from "../styles/dndStyle";
+import { Board, BoardTitle } from "../styles/dndStyle";
 import DragSection from "./DragSection";
 import { IBoardProps } from "../interfaces/boardInterface";
 
@@ -8,6 +8,7 @@ const DropSection = ({ todos, boardId }: IBoardProps) => {
     <Droppable droppableId={boardId}>
       {(provided) => (
         <Board ref={provided.innerRef} {...provided.droppableProps}>
+          <BoardTitle>{boardId}</BoardTitle>
           {todos.map((v, idx) => (
             <DragSection key={v} v={v} idx={idx} />
           ))}

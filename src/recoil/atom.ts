@@ -5,8 +5,8 @@ export const toDoState = atom<ITodoState>({
   key: "todo",
   // 할일, 진행중, 완료 카테고리
   default: {
-    to_do: ["a", "b"],
-    doing: ["c", "d", "e"],
-    done: ["f"],
+    할일: ["a", "b"],
+    진행중: ["c", "d", "e"],
+    완료: ["f"],
   },
 });
