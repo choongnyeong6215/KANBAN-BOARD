@@ -1,32 +1,35 @@
 import { Droppable } from "react-beautiful-dnd";
-import {
-  Board,
-  BoardTitle,
-  DragArea,
-  TodoRefContainer,
-} from "../styles/dndStyle";
+import { Board, BoardTitle, DragArea, TodoForm } from "../styles/dndStyle";
 import DragSection from "./DragSection";
 import { IBoardProps } from "../interfaces/boardInterface";
-import { useRef } from "react";
 import { useForm } from "react-hook-form";
+import { ITodoForm } from "../interfaces/todoInterface";
 
 const DropSection = ({ todos, boardId }: IBoardProps) => {
-  const todoRef = useRef<HTMLInputElement>(null);
+  // 할일 추가 처리 로직
+  const { register, handleSubmit, setValue } = useForm<ITodoForm>();
 
-  // input 활성화
-  const addTodo = () => todoRef.current?.focus();
+  // 입력값 유효할 떄 실행
+  const isValid = ({ todo }: ITodoForm) => {
+    console.log(todo);
 
-  const toDoForm = useForm();
+    // 입력값 초기화
+    setValue("todo", "");
+  };
 
   return (
     <Droppable droppableId={boardId}>
       {(provided, snapshot) => (
         <Board ref={provided.innerRef} {...provided.droppableProps}>
           <BoardTitle>{boardId}</BoardTitle>
-          <TodoRefContainer>
-            <input ref={todoRef} placeholder="할 일을 기록해보세요!" />
-            <button onClick={addTodo}>추가</button>
-          </TodoRefContainer>
+          <TodoForm onSubmit={handleSubmit(isValid)}>
+            <input
+              type="text"
+              placeholder={`${boardId} 추가`}
+              {...register("todo", { required: true })}
+            />
+            <button>추가</button>
+          </TodoForm>
           <DragArea $isDraggingOver={snapshot.isDraggingOver}>
             {todos.map((v, idx) => (
               <DragSection key={v} v={v} idx={idx} />

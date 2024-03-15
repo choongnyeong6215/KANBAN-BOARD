@@ -53,7 +53,7 @@ export const DragArea = styled.div<{ $isDraggingOver: boolean }>`
   border-radius: 1rem;
 `;
 
-export const TodoRefContainer = styled.div`
+export const TodoForm = styled.form`
   margin: 1em 0;
   position: relative;
   input {
