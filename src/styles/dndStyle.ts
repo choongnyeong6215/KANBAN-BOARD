@@ -4,7 +4,7 @@ export const BoardContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: 700px;
+  max-width: 1000px;
   margin: 0 auto;
   height: 100vh;
 `;
@@ -51,4 +51,27 @@ export const DragArea = styled.div<{ $isDraggingOver: boolean }>`
   flex-direction: column;
   padding: 1rem;
   border-radius: 1rem;
+`;
+
+export const TodoRefContainer = styled.div`
+  margin: 1em 0;
+  position: relative;
+  input {
+    padding: 1rem 1rem;
+    width: 100%;
+    border: none;
+    border-radius: 0.5rem;
+  }
+  button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    padding: 0.5rem;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    color: ${(props) => props.theme.bgColor};
+    font-weight: bold;
+  }
 `;

@@ -13,7 +13,7 @@ const DndSection = () => {
     // 보드 밖에 드롭한 경우
     if (!destination) return;
 
-    // 같은 카텍고리로 이동한 경우
+    // 같은 카테고리로 이동한 경우
     if (source.droppableId === destination?.droppableId) {
       setToDos((prevTodos) => {
         const updateBoard = [...prevTodos[destination.droppableId]];
