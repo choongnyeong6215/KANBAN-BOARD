@@ -1,4 +1,6 @@
+import { ITodo } from "./todoInterface";
+
 export interface IBoardProps {
-  todos: string[];
+  todos: ITodo[];
   boardId: string;
 }

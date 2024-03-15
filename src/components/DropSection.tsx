@@ -32,7 +32,12 @@ const DropSection = ({ todos, boardId }: IBoardProps) => {
           </TodoForm>
           <DragArea $isDraggingOver={snapshot.isDraggingOver}>
             {todos.map((v, idx) => (
-              <DragSection key={v} v={v} idx={idx} />
+              <DragSection
+                key={v.id}
+                todoText={v.text}
+                todoId={v.id}
+                idx={idx}
+              />
             ))}
             {/* 보드 크기 고정 */}
             {provided.placeholder}

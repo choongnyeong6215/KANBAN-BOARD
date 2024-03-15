@@ -1,9 +1,15 @@
 // 카테고리
 export interface ITodoState {
-  [key: string]: string[];
+  [key: string]: ITodo[];
 }
 
-// 할일 입력 추가 폼
+// 할 일 입력 추가 폼
 export interface ITodoForm {
   todo: string;
+}
+
+// 할 일 데이타
+export interface ITodo {
+  id: number;
+  text: string;
 }

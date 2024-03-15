@@ -1,4 +1,5 @@
 export interface ICardProps {
-  v: string;
+  todoId: number;
+  todoText: string;
   idx: number;
 }

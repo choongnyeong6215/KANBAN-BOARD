@@ -3,9 +3,9 @@ import { Card } from "../styles/dndStyle";
 import { ICardProps } from "../interfaces/cardInterface";
 import React from "react";
 
-const DragSection = ({ v, idx }: ICardProps) => {
+const DragSection = ({ todoId, todoText, idx }: ICardProps) => {
   return (
-    <Draggable draggableId={v} index={idx}>
+    <Draggable draggableId={String(todoId)} index={idx}>
       {(provided, snapshot) => (
         <Card
           $isDragging={snapshot.isDragging}
@@ -13,7 +13,7 @@ const DragSection = ({ v, idx }: ICardProps) => {
           {...provided.dragHandleProps}
           {...provided.draggableProps}
         >
-          {v}
+          {todoText}
         </Card>
       )}
     </Draggable>
