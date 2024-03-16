@@ -25,7 +25,7 @@ const DropSection = ({ todos, boardId }: IBoardProps) => {
           <TodoForm onSubmit={handleSubmit(isValid)}>
             <input
               type="text"
-              placeholder={`${boardId} 추가`}
+              placeholder={`${boardId} 기록`}
               {...register("todo", { required: true })}
             />
             <button>추가</button>

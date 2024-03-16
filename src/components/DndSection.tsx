@@ -8,8 +8,7 @@ const DndSection = () => {
   const [todos, setToDos] = useRecoilState(toDoState);
 
   const onDragEnd = ({ draggableId, source, destination }: DropResult) => {
-    console.log(draggableId, source, destination);
-
+    // console.log(draggableId, source, destination);
     // 보드 밖에 드롭한 경우
     if (!destination) return;
 
@@ -18,9 +17,11 @@ const DndSection = () => {
       setToDos((prevTodos) => {
         const updateBoard = [...prevTodos[destination.droppableId]];
 
-        updateBoard.splice(source.index, 1);
+        // 움직인 리스트
+        const movedTodo = updateBoard[source.index];
 
-        updateBoard.splice(destination.index, 0, draggableId);
+        updateBoard.splice(source.index, 1);
+        updateBoard.splice(destination.index, 0, movedTodo);
 
         // 보드 최신화
         return {
@@ -29,7 +30,6 @@ const DndSection = () => {
         };
       });
     }
-
     // 다른 카테고리로 이동한 경우
     if (source.droppableId !== destination?.droppableId) {
       setToDos((prevTodos) => {
@@ -37,9 +37,11 @@ const DndSection = () => {
 
         const updateBoard = [...prevTodos[destination.droppableId]];
 
-        originalBoard.splice(source.index, 1);
+        // 움직인 리스트
+        const movedTodo = originalBoard[source.index];
 
-        updateBoard.splice(destination.index, 0, draggableId);
+        originalBoard.splice(source.index, 1);
+        updateBoard.splice(destination.index, 0, movedTodo);
 
         // 보드 최신화
         return {
