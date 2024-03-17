@@ -1,5 +1,12 @@
 import { atom } from "recoil";
 import { ITodoState } from "../interfaces/todoInterface";
+import { recoilPersist } from "recoil-persist";
+
+// localSotrage 저장
+const { persistAtom } = recoilPersist({
+  key: "todoLocalStorage",
+  storage: localStorage,
+});
 
 export const toDoState = atom<ITodoState>({
   key: "todo",
@@ -9,4 +16,5 @@ export const toDoState = atom<ITodoState>({
     진행중: [],
     완료: [],
   },
+  effects_UNSTABLE: [persistAtom],
 });
