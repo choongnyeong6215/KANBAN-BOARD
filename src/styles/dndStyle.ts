@@ -19,9 +19,11 @@ export const BoardGroup = styled.div`
 // Droppable
 export const Board = styled.div`
   background-color: ${(props) => props.theme.boardColor};
-  padding: 2rem 2rem;
-  padding-top: 2rem;
+  padding: 2rem 1rem;
   border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 300px;
 `;
 
 // Draggable
@@ -32,7 +34,6 @@ export const Card = styled.div<{ $isDragging: boolean }>`
   padding: 1rem;
   margin: 1rem 0;
   border-radius: 1rem;
-  flex-grow: 1;
 `;
 
 export const BoardTitle = styled.p`
@@ -43,14 +44,20 @@ export const BoardTitle = styled.p`
 `;
 
 // 드래그 요소 전체 영역
-export const DragArea = styled.div<{ $isDraggingOver: boolean }>`
-  // 리스트 드롭 시 해당 드롭 영역 색상 변경 처리
+export const DragArea = styled.div<{
+  $isDraggingOver: boolean;
+  $DraggingFromThisWith: boolean;
+}>`
+  // 리스트 드롭 시 해당 드롭 영역 색상 변경
   background-color: ${(props) =>
-    props.$isDraggingOver ? "#EEE3CB" : "#F5EEE6"};
-  display: flex;
-  flex-direction: column;
+    props.$isDraggingOver
+      ? "#b2bec3"
+      : props.$DraggingFromThisWith
+      ? "#dfe6e9"
+      : "transparent"};
   padding: 1rem;
   border-radius: 1rem;
+  flex-grow: 1;
 `;
 
 export const TodoForm = styled.form`
