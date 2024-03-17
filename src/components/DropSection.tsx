@@ -4,33 +4,54 @@ import DragSection from "./DragSection";
 import { IBoardProps } from "../interfaces/boardInterface";
 import { useForm } from "react-hook-form";
 import { ITodoForm } from "../interfaces/todoInterface";
+import { useSetRecoilState } from "recoil";
+import { toDoState } from "../recoil/atom";
 
 const DropSection = ({ todos, boardId }: IBoardProps) => {
-  // 할일 추가 처리 로직
+  const setToDos = useSetRecoilState(toDoState);
+
+  // react-hook-form
   const { register, handleSubmit, setValue } = useForm<ITodoForm>();
 
   // 입력값 유효할 떄 실행
   const isValid = ({ todo }: ITodoForm) => {
-    console.log(todo);
+    // 새로 입력한 리스트
+    const newTodo = {
+      id: Date.now(),
+      text: todo,
+    };
+
+    // 보드 최신화
+    setToDos((prevToDos) => {
+      return {
+        ...prevToDos,
+        [boardId]: [...prevToDos[boardId], newTodo],
+      };
+    });
 
     // 입력값 초기화
     setValue("todo", "");
   };
 
   return (
-    <Droppable droppableId={boardId}>
-      {(provided, snapshot) => (
-        <Board ref={provided.innerRef} {...provided.droppableProps}>
-          <BoardTitle>{boardId}</BoardTitle>
-          <TodoForm onSubmit={handleSubmit(isValid)}>
-            <input
-              type="text"
-              placeholder={`${boardId} 기록`}
-              {...register("todo", { required: true })}
-            />
-            <button>추가</button>
-          </TodoForm>
-          <DragArea $isDraggingOver={snapshot.isDraggingOver}>
+    <Board>
+      <BoardTitle>{boardId}</BoardTitle>
+      <TodoForm onSubmit={handleSubmit(isValid)}>
+        <input
+          type="text"
+          placeholder={`${boardId} 기록하기`}
+          {...register("todo", { required: true })}
+        />
+        <button>추가</button>
+      </TodoForm>
+      <Droppable droppableId={boardId}>
+        {(provided, snapshot) => (
+          <DragArea
+            ref={provided.innerRef}
+            {...provided.droppableProps}
+            $isDraggingOver={snapshot.isDraggingOver}
+            $DraggingFromThisWith={Boolean(snapshot.draggingFromThisWith)}
+          >
             {todos.map((v, idx) => (
               <DragSection
                 key={v.id}
@@ -42,9 +63,9 @@ const DropSection = ({ todos, boardId }: IBoardProps) => {
             {/* 보드 크기 고정 */}
             {provided.placeholder}
           </DragArea>
-        </Board>
-      )}
-    </Droppable>
+        )}
+      </Droppable>
+    </Board>
   );
 };
 

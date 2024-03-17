@@ -5,7 +5,7 @@ import React from "react";
 
 const DragSection = ({ todoId, todoText, idx }: ICardProps) => {
   return (
-    <Draggable draggableId={String(todoId)} index={idx}>
+    <Draggable key={todoId} draggableId={String(todoId)} index={idx}>
       {(provided, snapshot) => (
         <Card
           $isDragging={snapshot.isDragging}
