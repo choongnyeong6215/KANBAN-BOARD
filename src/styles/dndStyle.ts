@@ -5,7 +5,7 @@ export const BoardContainer = styled.div`
   justify-content: center;
   align-items: center;
   max-width: 1000px;
-  margin: 10rem auto;
+  margin: 3rem auto;
 `;
 
 export const BoardGroup = styled.div`
