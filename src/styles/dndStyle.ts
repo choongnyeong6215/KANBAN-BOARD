@@ -29,8 +29,7 @@ export const Board = styled.div`
 // Draggable
 export const Card = styled.div<{ $isDragging: boolean }>`
   // 드래그 요소 색상 강조 처리
-  background-color: ${(props) =>
-    props.$isDragging ? props.theme.bgColor : props.theme.cardColor};
+  background-color: ${(props) => props.theme.cardColor};
   padding: 1rem;
   margin: 1rem 0;
   border-radius: 1rem;
@@ -80,5 +79,16 @@ export const TodoForm = styled.form`
     cursor: pointer;
     color: ${(props) => props.theme.bgColor};
     font-weight: bold;
+  }
+`;
+
+export const TrashCan = styled.div`
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  font-size: 3rem;
+  .logo {
+    color: ${(props) => props.theme.boardColor};
+    cursor: pointer;
   }
 `;

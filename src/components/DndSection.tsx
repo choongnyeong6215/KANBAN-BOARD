@@ -1,8 +1,9 @@
-import { DragDropContext, DropResult } from "react-beautiful-dnd";
-import { BoardContainer, BoardGroup } from "../styles/dndStyle";
+import { DragDropContext, DropResult, Droppable } from "react-beautiful-dnd";
+import { BoardContainer, BoardGroup, TrashCan } from "../styles/dndStyle";
 import { useRecoilState } from "recoil";
 import { toDoState } from "../recoil/atom";
 import DropSection from "./DropSection";
+import { FaTrashAlt } from "react-icons/fa";
 
 const DndSection = () => {
   const [todos, setToDos] = useRecoilState(toDoState);
@@ -12,8 +13,20 @@ const DndSection = () => {
     // 보드 밖에 드롭한 경우
     if (!destination) return;
 
-    // 같은 카테고리로 이동한 경우
-    if (source.droppableId === destination?.droppableId) {
+    // 할일 삭제
+    if (destination.droppableId === "삭제") {
+      setToDos((prevToDos) => {
+        const deleteTask = [...prevToDos[source.droppableId]];
+
+        deleteTask.splice(source.index, 1);
+
+        return {
+          ...prevToDos,
+          [source.droppableId]: deleteTask,
+        };
+      });
+    } else if (source.droppableId === destination?.droppableId) {
+      // 같은 카테고리로 이동한 경우
       setToDos((prevTodos) => {
         const updateBoard = [...prevTodos[destination.droppableId]];
 
@@ -31,7 +44,7 @@ const DndSection = () => {
       });
     }
     // 다른 카테고리로 이동한 경우
-    if (source.droppableId !== destination?.droppableId) {
+    else {
       setToDos((prevTodos) => {
         const originalBoard = [...prevTodos[source.droppableId]];
 
@@ -63,6 +76,14 @@ const DndSection = () => {
           ))}
         </BoardGroup>
       </BoardContainer>
+      <Droppable droppableId="삭제">
+        {(provided) => (
+          <TrashCan ref={provided.innerRef} {...provided.droppableProps}>
+            <FaTrashAlt className="logo" />
+            {/* {provided.placeholder} */}
+          </TrashCan>
+        )}
+      </Droppable>
     </DragDropContext>
   );
 };
