@@ -5,8 +5,7 @@ export const BoardContainer = styled.div`
   justify-content: center;
   align-items: center;
   max-width: 1000px;
-  margin: 0 auto;
-  height: 100vh;
+  margin: 10rem auto;
 `;
 
 export const BoardGroup = styled.div`
@@ -49,13 +48,9 @@ export const DragArea = styled.div<{
 }>`
   // 리스트 드롭 시 해당 드롭 영역 색상 변경
   background-color: ${(props) =>
-    props.$isDraggingOver
-      ? "#b2bec3"
-      : props.$DraggingFromThisWith
-      ? "#dfe6e9"
-      : "transparent"};
-  padding: 1rem;
+    props.$isDraggingOver ? "royalblue" : "transparent"};
   border-radius: 1rem;
+  padding: 1rem;
   flex-grow: 1;
 `;
 
@@ -67,6 +62,7 @@ export const TodoForm = styled.form`
     width: 100%;
     border: none;
     border-radius: 0.5rem;
+    background-color: ${(props) => props.theme.cardColor};
   }
   button {
     position: absolute;
@@ -77,18 +73,43 @@ export const TodoForm = styled.form`
     border: none;
     background-color: transparent;
     cursor: pointer;
-    color: ${(props) => props.theme.bgColor};
+    color: black;
     font-weight: bold;
   }
 `;
 
 export const TrashCan = styled.div`
-  position: absolute;
-  bottom: 2rem;
-  right: 2rem;
+  position: fixed;
+  bottom: 0;
+  right: 0;
   font-size: 3rem;
+  padding: 1rem;
   .logo {
-    color: ${(props) => props.theme.boardColor};
+    color: ${(props) => props.theme.iconColor};
     cursor: pointer;
+  }
+`;
+
+export const Header = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  padding: 2rem;
+  .newBoard,
+  .darkMode {
+    font-size: 3rem;
+    color: ${(props) => props.theme.iconColor};
+    cursor: pointer;
+    margin-left: 2rem;
+  }
+`;
+
+export const AddTaskBtn = styled.button`
+  .btnIcon {
+    position: absolute;
+    top: 0;
+    right: 0.5rem;
+    height: 100%;
+    font-size: 1.5rem;
+    color: royalblue;
   }
 `;

@@ -1,9 +1,17 @@
 import { DragDropContext, DropResult, Droppable } from "react-beautiful-dnd";
-import { BoardContainer, BoardGroup, TrashCan } from "../styles/dndStyle";
+import {
+  BoardContainer,
+  BoardGroup,
+  TrashCan,
+  Header,
+} from "../styles/dndStyle";
 import { useRecoilState } from "recoil";
 import { toDoState } from "../recoil/atom";
 import DropSection from "./DropSection";
+// react-icons
 import { FaTrashAlt } from "react-icons/fa";
+import { FaFolderPlus } from "react-icons/fa";
+import { IoIosSunny } from "react-icons/io";
 
 const DndSection = () => {
   const [todos, setToDos] = useRecoilState(toDoState);
@@ -67,24 +75,29 @@ const DndSection = () => {
   };
 
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
-      <BoardContainer>
-        <BoardGroup>
-          {/* 카테고리로 drop section 분류 */}
-          {Object.keys(todos).map((v) => (
-            <DropSection key={v} boardId={v} todos={todos[v]} />
-          ))}
-        </BoardGroup>
-      </BoardContainer>
-      <Droppable droppableId="삭제">
-        {(provided) => (
-          <TrashCan ref={provided.innerRef} {...provided.droppableProps}>
-            <FaTrashAlt className="logo" />
-            {/* {provided.placeholder} */}
-          </TrashCan>
-        )}
-      </Droppable>
-    </DragDropContext>
+    <>
+      <Header>
+        <FaFolderPlus className="newBoard" />
+        <IoIosSunny className="darkMode" />
+      </Header>
+      <DragDropContext onDragEnd={onDragEnd}>
+        <BoardContainer>
+          <BoardGroup>
+            {/* 카테고리로 drop section 분류 */}
+            {Object.keys(todos).map((v) => (
+              <DropSection key={v} boardId={v} todos={todos[v]} />
+            ))}
+          </BoardGroup>
+        </BoardContainer>
+        <Droppable droppableId="삭제">
+          {(provided) => (
+            <TrashCan ref={provided.innerRef} {...provided.droppableProps}>
+              <FaTrashAlt className="logo" />
+            </TrashCan>
+          )}
+        </Droppable>
+      </DragDropContext>
+    </>
   );
 };
 

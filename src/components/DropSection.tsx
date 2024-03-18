@@ -1,11 +1,19 @@
 import { Droppable } from "react-beautiful-dnd";
-import { Board, BoardTitle, DragArea, TodoForm } from "../styles/dndStyle";
+import {
+  Board,
+  BoardTitle,
+  DragArea,
+  TodoForm,
+  AddTaskBtn,
+} from "../styles/dndStyle";
 import DragSection from "./DragSection";
 import { IBoardProps } from "../interfaces/boardInterface";
 import { useForm } from "react-hook-form";
 import { ITodoForm } from "../interfaces/todoInterface";
 import { useSetRecoilState } from "recoil";
 import { toDoState } from "../recoil/atom";
+// react-icons
+import { FaCirclePlus } from "react-icons/fa6";
 
 const DropSection = ({ todos, boardId }: IBoardProps) => {
   const setToDos = useSetRecoilState(toDoState);
@@ -42,7 +50,9 @@ const DropSection = ({ todos, boardId }: IBoardProps) => {
           placeholder={`${boardId} 기록하기`}
           {...register("todo", { required: true })}
         />
-        <button>추가</button>
+        <AddTaskBtn>
+          <FaCirclePlus className="btnIcon" />
+        </AddTaskBtn>
       </TodoForm>
       <Droppable droppableId={boardId}>
         {(provided, snapshot) => (
