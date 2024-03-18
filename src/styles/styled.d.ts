@@ -5,5 +5,6 @@ declare module "styled-compnents" {
     bgColor: string;
     boardColor: string;
     cardColor: string;
+    iconColor: string;
   }
 }
