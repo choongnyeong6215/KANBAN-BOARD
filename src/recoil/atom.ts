@@ -18,3 +18,9 @@ export const toDoState = atom<ITodoState>({
   },
   effects_UNSTABLE: [persistAtom],
 });
+
+// 디크모드
+export const isDarkMode = atom({
+  key: "darkMode",
+  default: false,
+});

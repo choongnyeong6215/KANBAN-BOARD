@@ -6,5 +6,6 @@ declare module "styled-compnents" {
     boardColor: string;
     cardColor: string;
     iconColor: string;
+    fontColor: string;
   }
 }

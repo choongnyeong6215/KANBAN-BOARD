@@ -37,7 +37,7 @@ export const GlobalStyle = createGlobalStyle`
     line-height: 1;
     font-family: "Nanum Gothic Coding", monospace;
     background-color: ${(props) => props.theme.bgColor};
-    color : black;
+    color : ${(props) => props.theme.fontColor};
     font-family: "Nanum Gothic", sans-serif;
   }
   menu, ol, ul {

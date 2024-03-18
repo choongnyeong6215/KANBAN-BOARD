@@ -4,14 +4,16 @@ import {
   BoardGroup,
   TrashCan,
   Header,
+  ModeBtn,
 } from "../styles/dndStyle";
 import { useRecoilState } from "recoil";
-import { toDoState } from "../recoil/atom";
+import { isDarkMode, toDoState } from "../recoil/atom";
 import DropSection from "./DropSection";
 // react-icons
 import { FaTrashAlt } from "react-icons/fa";
 import { FaFolderPlus } from "react-icons/fa";
 import { IoIosSunny } from "react-icons/io";
+import { FaMoon } from "react-icons/fa";
 
 const DndSection = () => {
   const [todos, setToDos] = useRecoilState(toDoState);
@@ -74,11 +76,22 @@ const DndSection = () => {
     }
   };
 
+  // 모드 변경
+  const [isDark, setIsDark] = useRecoilState(isDarkMode);
+
+  const handleChgMode = () => setIsDark(!isDark);
+
   return (
     <>
       <Header>
         <FaFolderPlus className="newBoard" />
-        <IoIosSunny className="darkMode" />
+        <ModeBtn onClick={handleChgMode}>
+          {isDark ? (
+            <FaMoon className="lightMode" />
+          ) : (
+            <IoIosSunny className="darkMode" />
+          )}
+        </ModeBtn>
       </Header>
       <DragDropContext onDragEnd={onDragEnd}>
         <BoardContainer>

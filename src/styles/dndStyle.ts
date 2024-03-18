@@ -63,6 +63,7 @@ export const TodoForm = styled.form`
     border: none;
     border-radius: 0.5rem;
     background-color: ${(props) => props.theme.cardColor};
+    color: ${(props) => props.theme.fontColor};
   }
   button {
     position: absolute;
@@ -95,12 +96,21 @@ export const Header = styled.div`
   justify-content: flex-end;
   padding: 2rem;
   .newBoard,
-  .darkMode {
+  .darkMode,
+  .lightMode {
     font-size: 3rem;
     color: ${(props) => props.theme.iconColor};
     cursor: pointer;
     margin-left: 2rem;
+    &:hover {
+      color: royalblue;
+    }
   }
+`;
+
+export const ModeBtn = styled.button`
+  border: none;
+  background-color: transparent;
 `;
 
 export const AddTaskBtn = styled.button`
