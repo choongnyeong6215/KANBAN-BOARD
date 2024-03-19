@@ -22,5 +22,5 @@ export const toDoState = atom<ITodoState>({
 // 디크모드
 export const isDarkMode = atom({
   key: "darkMode",
-  default: false,
+  default: localStorage.getItem("mode") === "true" ? true : false,
 });

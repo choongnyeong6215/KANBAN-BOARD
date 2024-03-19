@@ -76,10 +76,13 @@ const DndSection = () => {
     }
   };
 
-  // 모드 변경
   const [isDark, setIsDark] = useRecoilState(isDarkMode);
 
-  const handleChgMode = () => setIsDark(!isDark);
+  // 모드 변경
+  const handleChgMode = () => {
+    setIsDark(!isDark);
+    localStorage.setItem("mode", String(!isDark));
+  };
 
   return (
     <>
