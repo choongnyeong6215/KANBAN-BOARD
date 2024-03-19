@@ -106,8 +106,12 @@ const DndSection = () => {
           </BoardGroup>
         </BoardContainer>
         <Droppable droppableId="삭제">
-          {(provided) => (
-            <TrashCan ref={provided.innerRef} {...provided.droppableProps}>
+          {(provided, snapshot) => (
+            <TrashCan
+              ref={provided.innerRef}
+              {...provided.droppableProps}
+              $isDraggingOver={snapshot.isDraggingOver}
+            >
               <FaTrashAlt className="logo" />
             </TrashCan>
           )}

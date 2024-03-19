@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { transform } from "typescript";
 
 export const BoardContainer = styled.div`
   display: flex;
@@ -79,15 +80,23 @@ export const TodoForm = styled.form`
   }
 `;
 
-export const TrashCan = styled.div`
+export const TrashCan = styled.div<{ $isDraggingOver: boolean }>`
   position: fixed;
-  bottom: 0;
-  right: 0;
+  bottom: 1rem;
+  right: 1rem;
   font-size: 3rem;
   padding: 1rem;
+  background-color: ${(props) =>
+    props.$isDraggingOver ? "tomato" : "transparent"};
+  width: 5rem;
+  border-radius: 2.5rem;
   .logo {
     color: ${(props) => props.theme.iconColor};
     cursor: pointer;
+  }
+  &:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s;
   }
 `;
 
