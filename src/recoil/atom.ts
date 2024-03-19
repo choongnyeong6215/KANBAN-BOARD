@@ -24,3 +24,9 @@ export const isDarkMode = atom({
   key: "darkMode",
   default: localStorage.getItem("mode") === "true" ? true : false,
 });
+
+// 보드 추가 입력 모달
+export const boardModal = atom({
+  key: "boardModal",
+  default: false,
+});

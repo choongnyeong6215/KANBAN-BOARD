@@ -7,7 +7,7 @@ import {
   ModeBtn,
 } from "../styles/dndStyle";
 import { useRecoilState } from "recoil";
-import { isDarkMode, toDoState } from "../recoil/atom";
+import { boardModal, isDarkMode, toDoState } from "../recoil/atom";
 import DropSection from "./DropSection";
 // react-icons
 import { FaTrashAlt } from "react-icons/fa";
@@ -84,10 +84,17 @@ const DndSection = () => {
     localStorage.setItem("mode", String(!isDark));
   };
 
+  // 보드 추가 입력 모달
+  const [modalOpen, setModalOpen] = useRecoilState(boardModal);
+
+  const addNewBoard = () => {
+    setModalOpen(!modalOpen);
+  };
+
   return (
     <>
       <Header>
-        <FaFolderPlus className="newBoard" />
+        <FaFolderPlus className="newBoard" onClick={addNewBoard} />
         <ModeBtn onClick={handleChgMode}>
           {isDark ? (
             <FaMoon className="lightMode" />
