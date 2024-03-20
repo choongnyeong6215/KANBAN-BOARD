@@ -34,6 +34,15 @@ export const Card = styled.div<{ $isDragging: boolean }>`
   border-radius: 1rem;
 `;
 
+export const BoardHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  aligin-items: center;
+  .deletBoard {
+    cursor: pointer;
+  }
+`;
+
 export const BoardTitle = styled.p`
   text-align: center;
   font-weight: bold;

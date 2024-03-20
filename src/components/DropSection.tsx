@@ -5,6 +5,7 @@ import {
   DragArea,
   TodoForm,
   AddTaskBtn,
+  BoardHeader,
 } from "../styles/dndStyle";
 import DragSection from "./DragSection";
 import { IBoardProps } from "../interfaces/boardInterface";
@@ -14,6 +15,7 @@ import { useSetRecoilState } from "recoil";
 import { toDoState } from "../recoil/atom";
 // react-icons
 import { FaCirclePlus } from "react-icons/fa6";
+import { FaTrash } from "react-icons/fa";
 
 const DropSection = ({ todos, boardId }: IBoardProps) => {
   const setToDos = useSetRecoilState(toDoState);
@@ -41,9 +43,26 @@ const DropSection = ({ todos, boardId }: IBoardProps) => {
     setValue("todo", "");
   };
 
+  // 보드 삭제 로직
+  const handleDeleteBoard = () => {
+    setToDos((prevToDos) => {
+      console.log(boardId);
+      const updateToDos = { ...prevToDos };
+
+      delete updateToDos[boardId];
+
+      return {
+        ...updateToDos,
+      };
+    });
+  };
+
   return (
     <Board>
-      <BoardTitle>{boardId}</BoardTitle>
+      <BoardHeader>
+        <BoardTitle>{boardId}</BoardTitle>
+        <FaTrash className="deletBoard" onClick={handleDeleteBoard} />
+      </BoardHeader>
       <TodoForm onSubmit={handleSubmit(isValid)}>
         <input
           type="text"
