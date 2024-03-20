@@ -4,7 +4,8 @@ import { useRecoilState } from "recoil";
 import {
   ModalHeader,
   ModalTitle,
-  newBoardModalStyle,
+  StyledModal,
+  // newBoardModalStyle,
   AddBoardForm,
 } from "../styles/modalStyle";
 // react-icons
@@ -17,7 +18,7 @@ const AddBoardModal = () => {
   const handleCloseModal = () => setModalOpen(!modalOpen);
 
   return (
-    <Modal isOpen={modalOpen} style={newBoardModalStyle} ariaHideApp={false}>
+    <StyledModal isOpen={modalOpen}>
       <ModalHeader>
         <IoIosClose className="closeModal" onClick={handleCloseModal} />
       </ModalHeader>
@@ -28,7 +29,7 @@ const AddBoardModal = () => {
         <input placeholder="asd" />
         <FaCirclePlus className="addModalBtn" />
       </AddBoardForm>
-    </Modal>
+    </StyledModal>
   );
 };
 

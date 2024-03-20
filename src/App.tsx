@@ -5,6 +5,7 @@ import { ThemeProvider } from "styled-components";
 import { useRecoilValue } from "recoil";
 import { isDarkMode } from "./recoil/atom";
 import AddBoardModal from "./components/AddBoardModal";
+import { ModalProvider } from "styled-react-modal";
 
 const App = () => {
   const isDark = useRecoilValue(isDarkMode);
@@ -12,9 +13,11 @@ const App = () => {
   return (
     <>
       <ThemeProvider theme={isDark ? lightTheme : darkTheme}>
-        <GlobalStyle />
-        <AddBoardModal />
-        <DndSection />
+        <ModalProvider>
+          <GlobalStyle />
+          <AddBoardModal />
+          <DndSection />
+        </ModalProvider>
       </ThemeProvider>
     </>
   );

@@ -1,12 +1,11 @@
 import styled from "styled-components";
-import { transform } from "typescript";
 
 export const BoardContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   max-width: 1000px;
-  margin: 3rem auto;
+  margin: 2rem auto;
 `;
 
 export const BoardGroup = styled.div`
