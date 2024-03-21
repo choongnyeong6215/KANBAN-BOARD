@@ -46,7 +46,6 @@ const DropSection = ({ todos, boardId }: IBoardProps) => {
   // 보드 삭제 로직
   const handleDeleteBoard = () => {
     setToDos((prevToDos) => {
-      console.log(boardId);
       const updateToDos = { ...prevToDos };
 
       delete updateToDos[boardId];

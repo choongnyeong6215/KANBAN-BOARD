@@ -23,6 +23,14 @@ export const Board = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 300px;
+  .deletBoard {
+    display: none;
+  }
+  &:hover {
+    .deletBoard {
+      display: block;
+    }
+  }
 `;
 
 // Draggable
