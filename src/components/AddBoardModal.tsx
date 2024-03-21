@@ -40,7 +40,11 @@ const AddBoardModal = () => {
   };
 
   return (
-    <StyledModal isOpen={modalOpen}>
+    <StyledModal
+      isOpen={modalOpen}
+      onEscapeKeydown={handleCloseModal} // esc -> 모달 닫기
+      onBackgroundClick={handleCloseModal} // overlay 클릭 -> 모달 닫기
+    >
       <ModalHeader>
         <IoIosClose className="closeModal" onClick={handleCloseModal} />
       </ModalHeader>
