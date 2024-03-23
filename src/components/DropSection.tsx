@@ -15,7 +15,7 @@ import { useSetRecoilState } from "recoil";
 import { toDoState } from "../recoil/atom";
 // react-icons
 import { FaCirclePlus } from "react-icons/fa6";
-import { FaTrash } from "react-icons/fa";
+import { FaRegTrashCan } from "react-icons/fa6";
 
 const DropSection = ({ todos, boardId }: IBoardProps) => {
   const setToDos = useSetRecoilState(toDoState);
@@ -60,7 +60,7 @@ const DropSection = ({ todos, boardId }: IBoardProps) => {
     <Board>
       <BoardHeader>
         <BoardTitle>{boardId}</BoardTitle>
-        <FaTrash className="deletBoard" onClick={handleDeleteBoard} />
+        <FaRegTrashCan className="deletBoard" onClick={handleDeleteBoard} />
       </BoardHeader>
       <TodoForm onSubmit={handleSubmit(isValid)}>
         <input
@@ -69,7 +69,7 @@ const DropSection = ({ todos, boardId }: IBoardProps) => {
           {...register("todo", { required: true })}
         />
         <AddTaskBtn>
-          <FaCirclePlus className="btnIcon" />
+          <FaCirclePlus className="addTask" />
         </AddTaskBtn>
       </TodoForm>
       <Droppable droppableId={boardId}>
@@ -86,6 +86,7 @@ const DropSection = ({ todos, boardId }: IBoardProps) => {
                 todoText={v.text}
                 todoId={v.id}
                 idx={idx}
+                boardId={boardId}
               />
             ))}
             {/* 보드 크기 고정 */}
