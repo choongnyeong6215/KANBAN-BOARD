@@ -49,7 +49,7 @@ const AddBoardModal = () => {
         <IoIosClose className="closeModal" onClick={handleCloseModal} />
       </ModalHeader>
       <ModalTitle>
-        <h1>생성할 보드 이름을 입력해주세요.</h1>
+        <p style={{ fontSize: "1.5rem" }}>생성할 보드 이름을 입력해주세요.</p>
       </ModalTitle>
       <AddBoardForm onSubmit={handleSubmit}>
         <input type="text" value={newBoardName} onChange={hanldeBoardName} />

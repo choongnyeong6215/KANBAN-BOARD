@@ -1,9 +1,11 @@
 import styled from "styled-components";
 import Modal from "styled-react-modal";
 
+// 보드 추가 모달
+
 export const StyledModal = Modal.styled`
-  width: 350px;
-  height: 350px;
+  width: 400px;
+  height: 400px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -32,7 +34,7 @@ export const ModalTitle = styled.div`
 export const ModalHeader = styled.div`
   display: flex;
   justify-content: flex-end;
-  margin: 1rem 1em;
+  margin: 2rem 1em;
   .closeModal {
     font-size: 2rem;
     cursor: pointer;
@@ -46,8 +48,8 @@ export const AddBoardForm = styled.form`
   position: relative;
   input {
     padding: 1rem;
-    width: 80%;
-    margin: 3rem 0;
+    width: 90%;
+    margin: 4rem auto;
     outline: none;
     border-radius: 1rem;
     border: none;
