@@ -15,6 +15,7 @@ import { useSetRecoilState } from "recoil";
 import { toDoState } from "../recoil/atom";
 // react-icons
 import { FaRegTrashCan } from "react-icons/fa6";
+import { FaCirclePlus } from "react-icons/fa6";
 
 const DropSection = ({ todos, boardId }: IBoardProps) => {
   const setToDos = useSetRecoilState(toDoState);
@@ -67,7 +68,9 @@ const DropSection = ({ todos, boardId }: IBoardProps) => {
           placeholder={`${boardId} 기록하기`}
           {...register("todo", { required: true })}
         />
-        <AddTaskBtn />
+        <AddTaskBtn>
+          <FaCirclePlus />
+        </AddTaskBtn>
       </TodoForm>
       <Droppable droppableId={boardId}>
         {(provided, snapshot) => (
