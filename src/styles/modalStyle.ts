@@ -44,22 +44,43 @@ export const ModalHeader = styled.div`
 export const AddBoardForm = styled.form`
   margin: 1rem 0;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   position: relative;
   input {
     padding: 1rem;
     width: 90%;
-    margin: 4rem auto;
+    margin-top: 3rem;
     outline: none;
     border-radius: 1rem;
     border: none;
     background-color: ${(props) => props.theme.cardColor};
     color: ${(props) => props.theme.fontColor};
   }
-  .addModalBtn {
+  .classModalBtn {
     position: absolute;
     top: 4.2rem;
     right: 3rem;
     display: none;
   }
+  button {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    height: 100%;
+    font-size: 1.5rem;
+    border: none;
+    background-color: transparent;
+    color: royalblue;
+  }
+`;
+
+export const WarningMsg = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 1.5rem;
+  font-size: 0.8rem;
+  color: tomato;
 `;
