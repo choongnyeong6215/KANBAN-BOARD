@@ -120,6 +120,7 @@ const DndSection = () => {
               $isDraggingOver={snapshot.isDraggingOver}
             >
               <FaTrashAlt className="logo" />
+              {/* {provided.placeholder} */}
             </TrashCan>
           )}
         </Droppable>

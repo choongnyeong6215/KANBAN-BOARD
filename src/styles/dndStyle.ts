@@ -39,6 +39,8 @@ export const BoardGroup = styled.div`
 `;
 
 export const TrashCan = styled.div<{ $isDraggingOver: boolean }>`
+  width: 5rem;
+  height: 5rem;
   position: fixed;
   bottom: 1rem;
   right: 1rem;
@@ -46,15 +48,14 @@ export const TrashCan = styled.div<{ $isDraggingOver: boolean }>`
   padding: 1rem;
   background-color: ${(props) =>
     props.$isDraggingOver ? "tomato" : "transparent"};
-  width: 5rem;
   border-radius: 2.5rem;
-  .logo {
-    color: ${(props) => props.theme.iconColor};
-    cursor: pointer;
-  }
   &:hover {
     transform: scale(1.1);
     transition: transform 0.3s;
+  }
+  .logo {
+    color: ${(props) => props.theme.iconColor};
+    cursor: pointer;
   }
 `;
 
